@@ -1,0 +1,34 @@
+[
+    {
+      "_id":"1",
+      "name":"Mark",
+      "email":"mark.d03@yahoo.com",
+      "phone":"713-987-2309",
+      "address":"45092 North rd.",
+      "employee_id":"1"
+    }, 
+    {
+      "_id":"2",
+      "name":"John",
+      "email":"john.s95@gmail.com",
+      "phone":"281-345-1698",
+      "address":"12604 Central st.",
+      "employee_id":"1"
+    },
+    {
+      "_id":"3",
+      "name":"Alice",
+      "email":"alice.j23@hotmail.com",
+      "phone":"618-932-0751",
+      "address":"83024 East way dr.",
+      "employee_id":"1"
+    },
+    {
+      "_id":"4",
+      "name":"Susan",
+      "email":"susan.r01@gmail.com",
+      "phone":"718-540-2398",
+      "address":"63012 Johnson st.",
+      "employee_id":"1"
+    }    
+]
