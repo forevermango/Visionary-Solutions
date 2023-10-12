@@ -20,6 +20,10 @@ const customerRouter = require('./routes/customerRoute');
 app.use('/customers', customerRouter); // Mount the customer router at '/customers'
 app.use('/products', require('./routes/productRoute'))
 
+
+const userRoutes = require('./routes/userRoutes');
+app.use('/users', userRoutes);
+
 app.get('/', (req, res) => {
     res.send('Backend for Visionary Solutions');
   });
