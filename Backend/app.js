@@ -18,7 +18,7 @@ app.use(favicon(faviconPath));
 // Require the customer router
 const customerRouter = require('./routes/customerRoute');
 app.use('/customers', customerRouter); // Mount the customer router at '/customers'
-
+app.use('/products', require('./routes/productRoute'))
 
 app.get('/', (req, res) => {
     res.send('Backend for Visionary Solutions');
