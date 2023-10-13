@@ -21,6 +21,7 @@ app.use('/customers', customerRouter); // Mount the customer router at '/custome
 app.use('/products', require('./routes/productRoute'))
 
 
+// user routes
 const userRoutes = require('./routes/userRoutes');
 app.use('/users', userRoutes);
 
