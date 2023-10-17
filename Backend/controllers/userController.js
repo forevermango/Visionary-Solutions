@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-const EmailController = {
+const UserController = {
   // function to add new user in db
     addUser: async (req, res) => {
         try {
@@ -62,4 +62,4 @@ const EmailController = {
 
 
 
-module.exports = EmailController;
+module.exports = UserController;

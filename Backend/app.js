@@ -25,6 +25,11 @@ app.use('/products', require('./routes/productRoute'))
 const userRoutes = require('./routes/userRoutes');
 app.use('/users', userRoutes);
 
+
+// login
+const loginRoutes = require('./routes/loginRoute');
+app.use('/login', loginRoutes);
+
 app.get('/', (req, res) => {
     res.send('Backend for Visionary Solutions');
   });
