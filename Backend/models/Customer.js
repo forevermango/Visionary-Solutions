@@ -68,10 +68,10 @@ const customerSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  address: {
-    type: String,
-    required: true,
-    trim: true,
+  birthday: {
+    type: Date,
+    validate: {
+      validator: isValidDate,
   },
   employee_id: {
     type: mongoose.Schema.Types.ObjectId,
