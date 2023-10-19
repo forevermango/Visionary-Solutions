@@ -12,16 +12,38 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
-  quantity: {
-    type: Number,
+  description: {
+    type: String,
     required: true,
-    min: 1,
+    trim: true,
   },
-  reference: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-    required: true,
+  type: {
+    type: String,
+    enum: ['Glasses', 'Contacts','Accessories'],
   },
+  glassesBrand: {
+    type: String,
+    required: function () {
+      return this.type === 'Glasses';
+    }
+  },
+  contactsBrand: {
+    type: String,
+    required: function () {
+      return this.type === 'Contacts';
+    }
+  },
+  accessoryType: {
+    type: [String],
+    required: function () {
+      return this.type === 'Accessories';
+    }
+  }
+  // reference: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Product',
+  //   required: true,
+  // },
 });
 
 // Define the order schema
@@ -34,10 +56,6 @@ const orderSchema = new mongoose.Schema({
   datetime: {
     type: Date,
     default: Date.now,
-  },
-  status: {
-    type: Boolean,
-    default: true,
   },
   products: [productSchema], // Array of products
 });
@@ -70,8 +88,6 @@ const customerSchema = new mongoose.Schema({
   },
   birthday: {
     type: Date,
-    validate: {
-      validator: isValidDate,
   },
   employee_id: {
     type: mongoose.Schema.Types.ObjectId,
