@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 // Define the product schema
 const productSchema = new mongoose.Schema({
-  name: {
+  item_name: {
     type: String,
     required: true,
     trim: true,
   },
-  quantity: {
+  items_total_price: {
     type: Number,
     required: true,
     min: 0,
@@ -16,7 +16,11 @@ const productSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  price: {
+  type: {
+    type: [String],
+    trim: true,
+  },
+  total_price: {
     type: Number,
     required: true,
     min: 0,
