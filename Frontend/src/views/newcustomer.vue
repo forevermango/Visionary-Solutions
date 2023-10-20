@@ -2,7 +2,7 @@
   <div class="container">
     <form class="col-md-8" @submit.prevent="submitForm">
       <div>
-        <h2 class="header">Customer Information</h2>
+        <h2 class="header">New Customer Information</h2>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="firstName">First Name</label>
@@ -37,9 +37,14 @@
               <input v-model="product.itemname" type="text" class="form-control" id="item">
             </div>
 
-            <div class="form-group col-md-6">
-              <label for="price">Items Total Price</label>
+            <div class="form-group col-md-3">
+              <label for="price">Price</label>
               <input v-model="product.itemPrice" type="number" min="0.01" step="0.01" class="form-control" id="itemPrice">
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="quantity">Quantity</label>
+              <input v-model="product.quantity" type="number" min="0" class="form-control" id="quantity">
             </div>
 
             <div class="form-group col-md-6">
@@ -50,19 +55,19 @@
             <div id="checks" class="form-group" >
               <label for="checks">Type</label>
               <div class="form-check">
-                <input v-model="product.type" class="form-check-input"  type="checkbox" value="Glasses" id="checkboxGlasses">
+                <input v-model="product.type" class="form-check-input"  type="radio" value="Glasses" id="checkboxGlasses">
                 <label class="form-check-label" for="checkboxGlasses">
                   Glasses
                 </label>
               </div>
               <div class="form-check">
-                <input v-model="product.type" class="form-check-input" type="checkbox" value="Contacts" id="checkboxContacts">
+                <input v-model="product.type" class="form-check-input" type="radio" value="Contacts" id="checkboxContacts">
                 <label class="form-check-label" for="checkboxContacts">
                   Contacts
                 </label>
               </div>
               <div class="form-check">
-                <input v-model="product.type" class="form-check-input" type="checkbox" value="Accessories" id="checkboxAccessories">
+                <input v-model="product.type" class="form-check-input" type="radio" value="Accessories" id="checkboxAccessories">
                 <label class="form-check-label" for="checkboxAccessories">
                   Accessories
                 </label>
@@ -145,6 +150,7 @@ export default {
           itemname: null,
           description: null,
           itemPrice: null,
+          quantity: null,
           type: [],
           glassesBrand: null,
           showGlasses: false,
@@ -159,6 +165,7 @@ export default {
       this.products.push({
         itemname: null,
         description: null,
+        quantity: null,
         type: [],
         glassesBrand: null,
         contactsBrand: null,
