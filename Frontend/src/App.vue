@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <nav class="navbar navbar-expand navbar-light bg-light">
       <!--Main brand for the navbar-->
       <div class="container">
-        <router-link to="/"><img src="@/assets/logo.svg" alt="..." height="36"></router-link>
+        <router-link to="/"><img src="@/assets/Today's_Vision_Logo.png" alt="..." height="70"></router-link>
       
         <ul class="nav navbar-nav mr-auto">
           <!--Navigation to other features-->
