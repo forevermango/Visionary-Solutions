@@ -17,7 +17,11 @@ const LoginController = {
           const token = jwt.sign({user: user},  process.env.SECRETKEY);
           
 
-          res.json({ token:token });
+          res.json({ token:token, user:{
+            name:user.name,
+            role:user.role,
+            email: user.email
+          } });
         } else {
           res.status(401).json({ message: 'Invalid password' });
         }
