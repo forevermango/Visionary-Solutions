@@ -32,27 +32,7 @@
       <div>
         <h2 class="header">Product Information</h2>
         <div v-for="(product, index) in products" :key="index">
-          <div class="form-group col-md-6">
-              <label for="item">Item Name</label>
-              <input v-model="product.itemname" type="text" class="form-control" id="item">
-            </div>
-
-            <div class="form-group col-md-3">
-              <label for="price">Price</label>
-              <input v-model="product.itemPrice" type="number" min="0.01" step="0.01" class="form-control" id="itemPrice">
-            </div>
-
-            <div class="form-group col-md-2">
-              <label for="quantity">Quantity</label>
-              <input v-model="product.quantity" type="number" min="0" class="form-control" id="quantity">
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="description">Description</label>
-              <textarea v-model="product.description" type="textarea" class="form-control" id="description"></textarea>
-            </div>
-
-            <div id="checks" class="form-group" >
+          <div id="checks" class="form-group" >
               <label for="checks">Type</label>
               <div class="form-check">
                 <input v-model="product.type" class="form-check-input"  type="radio" value="Glasses" id="checkboxGlasses">
@@ -77,17 +57,27 @@
                 <label for="glassesBrand">Glasses Brand</label>
                 <select class="form-control" id="glassesBrand" v-model="glassesBrand">
                   <option value="Generic">Generic</option>
-                  <option value="Designer">Designer</option>
+                  <option value="TomFord">Tom Ford</option>
+                  <option value="Gucci">Gucci</option>
+                  <option value="Burberry">Burberry</option>
+                  <option value="Versace">Versace</option>
+                  <option value="Oakley">Oakley</option>
+                  <option value="Ferragamo">Ferragamo</option>
+                  <option value="LilyFrames">Lily Frames</option>
+                  <option value="DavidBeckham">David Beckham</option>
+                  <option value="Polo">Polo</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
 
               <div v-if="product.type.includes('Contacts')" class="form-group col-md-6">
-                <label for="contactsBrand">Contacts Brand</label>
+                <label for="contactsBrand">Contacts</label>
                 <select class="form-control" id="contactsBrand" v-model="contactsBrand">
-                  <option value="Generic">Generic</option>
-                  <option value="Designer">Designer</option>
-                  <option value="Other">Other</option>
+                  <option value="Generic">Scleral</option>
+                  <option value="RGP">RGP</option>
+                  <option value="Hybrid">Hybrid</option>
+                  <option value="Orthokeratology">Orthokeratology</option>
+                  <option value="Other2">Other</option>
                 </select>
               </div>
 
@@ -95,20 +85,59 @@
                 <label for="accessoryType">Accessory Type</label>
                 
                 <div class="form-check">
-                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="antiCoating">Anti-reflective Coating
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="antiCoating">Anti-reflective Coating Standard
                 </div>
                 <div class="form-check">
-                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="access2">Other
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="lvl2AR">Level 2 AR
                 </div>
                 <div class="form-check">
-                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="access3">Other
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="lvl3AR">Level 3 AR
                 </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="premiumAR">Premium AR
+                </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="transitions">Transitions
+                </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="progressivelvl1">Progressive Level 1
+                </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="progressivelvl2">Progressive Level 2
+                </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="progressivelvl3">Progressive Level 3
+                </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="progressivelvl4">Progressive Level 4
+                </div>
+                <div class="form-check">
+                  <input id="accessoryType" v-model="accessoryType" class="form-check-input" type="checkbox" value="Other3">Other
+                </div>
+
 
               </div>
 
               
 
             </div>
+
+            <div class="form-group col-md-3">
+              <label for="price">Price</label>
+              <input v-model="product.itemPrice" type="number" min="0.01" step="0.01" class="form-control" id="itemPrice">
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="quantity">Quantity</label>
+              <input v-model="product.quantity" type="number" min="0" class="form-control" id="quantity">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="description">Description (Optional)</label>
+              <textarea v-model="product.description" type="textarea" class="form-control" id="description"></textarea>
+            </div>
+
+            
 
 
             <input type="button" @click="removeProduct(index)" v-if="shouldShowRemoveButton(index)" class="btn btn-danger form-group" value="Remove Product">
