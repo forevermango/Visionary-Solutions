@@ -49,13 +49,15 @@ export default {
                 // Store the token in local storage or a Vuex store for authentication
                 localStorage.setItem('token', token);
                 localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('userRole', user.role);
+                console.log('User role stored:', user.role);
 
                 if (user.role == 'employee')
                     // Redirect to HomeView.vue or any other route
                     this.$router.push('/');
                 else {
-                    const statusDisplay = document.getElementById('status_display');
-                    statusDisplay.textContent = 'Should be redirected to admin page';
+                    this.$router.push('/chart');
+
                 }
 
 
