@@ -7,7 +7,7 @@ import { ref } from 'vue';
   <div>
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="container">
-        <router-link to="/"><img src="@/assets/Today's_Vision_Logo.png" alt="..." height="70"></router-link>
+        <router-link to="/"><img src="@/assets/Todays_Vision_Logo.png" alt="..." height="70"></router-link>
         <div v-if="$route.name !== 'login'">
           <ul class="nav navbar-nav mr-auto">
             <li class="nav-item" v-if="shouldShowNewCustomerLink">
