@@ -77,10 +77,16 @@
                             <router-link :to="`/editcustomer/${customer._id}`" class="btn btn-primary">
                                 Edit
                             </router-link>
+
+                            <!-- Delete Customer Button -->
+                            <input type="button" @click="showDeletionConfirmation(customer._id)" class="btn btn-danger" value="Delete">
+
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <DeletionConfirmation v-if="showConfirmation" @confirm="deleteCustomer" @cancel="hideDeletionConfirmation" />
+
         </div>
     </div>
 </template>
@@ -88,12 +94,20 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router';
 import axios from 'axios'
+import DeletionConfirmation from '../components/DeleteConfirmation.vue'; // Make sure to import the component
+
 
 export default {
+    components: {
+        DeletionConfirmation,
+  },
     data() {
         return {
+            showConfirmation: false,
             searchQuery: '',
             customers: [],
+            customerToDelete: null // To store the ID of the customer to be deleted
+
         };
     },
     computed: {
@@ -102,7 +116,7 @@ export default {
             return this.customers.filter((customer) =>
                 customer.name.toLowerCase().includes(query) ||
                 customer.email.toLowerCase().includes(query) ||
-                customer.phonenumber.includes(query) ||
+                customer.phoneNumber.includes(query) ||
                 customer.birthday.includes(query)
             );
         },
@@ -124,11 +138,47 @@ export default {
         },
 
         search() {
-            // Add your search logic here
+            axios
+                .get(import.meta.env.VITE_ROOT_API + '/customers/search', {
+                params: { query: this.searchQuery }, // Send the search query as a query parameter
+                })
+                .then(response => {
+                this.customers = response?.data || [];
+                })
+                .catch(error => {
+                console.error('Error fetching data from API:', error);
+                });
         },
         toggleProducts(customer) {
             customer.isProductsVisible = !customer.isProductsVisible;
         },
+        showDeletionConfirmation(customerId) {
+            this.customerToDelete = customerId;
+            this.showConfirmation = true;
+        },
+        hideDeletionConfirmation() {
+         this.showConfirmation = false;
+        },
+        deleteCustomer() {
+            const customerId = this.customerToDelete;
+            if (!customerId) {
+                console.error('Customer ID is missing.');
+                return;
+            }
+
+            axios
+                .delete(import.meta.env.VITE_ROOT_API + `/customers/${customerId}`)
+                .then(() => {
+                // Remove the deleted customer from the list
+                this.customers = this.customers.filter((customer) => customer._id !== customerId);
+                this.hideDeletionConfirmation();
+                })
+                .catch((error) => {
+                console.error('Error deleting customer:', error);
+                this.hideDeletionConfirmation();
+                });
+        },
+
     },
     mounted() {
         axios
@@ -146,6 +196,10 @@ export default {
 
 
 <style scoped>
+
+.btn-danger {
+    margin-left: 30px;
+}
 .product-list {
     list-style: none;
     padding: 0;
