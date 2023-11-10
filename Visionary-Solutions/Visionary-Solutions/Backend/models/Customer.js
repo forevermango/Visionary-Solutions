@@ -17,7 +17,6 @@ const productSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
     trim: true,
   },
   type: {
@@ -102,12 +101,13 @@ const customerSchema = new mongoose.Schema({
     trim: true,
   },
   birthday: {
-    type: Date,
+    type: String,
+    required: true,
+    trim: true,
   },
   employee_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+    ref: 'User'
   },
   products: [productSchema], // Array of products as orders is not defined
 }, { timestamps: true });
