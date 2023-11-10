@@ -39,7 +39,7 @@ export default {
                 // Send a POST request to your login API with email and password
                 
                 const response = await axios.post(
-                    'https://todaysvision.onrender.com' + '/login', {
+                    'https://todays-vision.onrender.com' + '/login', {
                         email: this.email,
                         password: this.password,
                     });
