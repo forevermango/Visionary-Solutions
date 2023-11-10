@@ -408,8 +408,8 @@ export default {
       const data = {
         name,
         email,
-        phoneNumber: phoneNumber,
-        birthday: birthday,
+        phoneNumber,
+        birthday,
         employee_id: user.id,
         products: this.products,
       };
