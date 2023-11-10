@@ -39,7 +39,7 @@ export default {
                 // Send a POST request to your login API with email and password
                 
                 const response = await axios.post(
-                    process.env.VITE_ROOT_API + '/login', {
+                    'https://todaysvision.onrender.com' + '/login', {
                         email: this.email,
                         password: this.password,
                     });
