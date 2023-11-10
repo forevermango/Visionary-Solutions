@@ -5,10 +5,18 @@ const Customer = require('../models/Customer');
 // Create a new customer
 router.post('/', async (req, res) => {
   try {
-    const customer = new Customer(req.body);
+    const {name, phoneNumber, email, birthday, products } = req.body;
+    const customer = new Customer({
+      name,
+      phoneNumber,
+      email,
+      birthday,
+      products,
+    });
     await customer.save();
     res.status(201).json(customer);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: err.message });
   }
 });
@@ -129,6 +137,28 @@ router.get('/count', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 })
+
+
+// Search customers
+router.get('/search', async (req, res) => {
+  try {
+    const searchQuery = req.query.query; // Get the search query from the request URL query parameters
+
+    // Use a regular expression to perform a case-insensitive search on multiple fields
+    const customers = await Customer.find({
+      $or: [
+        { name: { $regex: new RegExp(searchQuery, 'i') } },
+        { email: { $regex: new RegExp(searchQuery, 'i') } },
+        { phoneNumber: { $regex: new RegExp(searchQuery, 'i') } },
+        { birthday: { $regex: new RegExp(searchQuery, 'i') } },
+      ],
+    });
+
+    res.json(customers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Read a single customer by ID
 router.get('/:customerId', async (req, res) => {
