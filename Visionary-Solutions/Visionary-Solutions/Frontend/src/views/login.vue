@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4">
-                <form>
+                <form @submit.prevent="login">
                     <h2 class="text-center">Login</h2>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -14,7 +14,8 @@
                         <input type="password" v-model="password" class="form-control" id="password" placeholder="Enter password">
                     </div>
                     <button @click.prevent="login" type="submit" class="btn btn-primary btn-block custom-margin-right">Login</button>
-                    <button @click.prevent="this.$router.push('/signup')" type="submit" class="btn btn-primary btn-block ">Sign Up</button>
+                    <button @click.prevent="this.$router.push('/signup')" type="button" class="btn btn-primary btn-block ">Sign Up</button>
+
                     <p id="status_display"></p>
                 </form>
             </div>
