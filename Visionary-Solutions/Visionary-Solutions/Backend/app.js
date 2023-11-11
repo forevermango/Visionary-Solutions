@@ -12,6 +12,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('tiny'))
 
+// Serve static files from the Vue.js build
+app.use(express.static(path.join(__dirname, 'dist')));
+
+
 const faviconPath = path.join(__dirname, 'public/icons', 'favicon.ico');
 app.use(favicon(faviconPath));
 
@@ -30,9 +34,11 @@ app.use('/users', userRoutes);
 const loginRoutes = require('./routes/loginRoute');
 app.use('/login', loginRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Backend for Visionary Solutions');
-  });
+// This route will now serve your `index.html` (and other static files)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 
 
 // Start the server
