@@ -8,7 +8,8 @@ require('dotenv').config();
 const db = require('./config/db')
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ["https://todays-vision.onrender.com"]}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'))
 
