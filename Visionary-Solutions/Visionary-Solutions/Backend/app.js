@@ -9,7 +9,7 @@ const db = require('./config/db')
 
 const app = express();
 app.use(cors({
-    origin: ["https://todays-vision.onrender.com"]}));
+    origin: ["http://localhost:8080", "https://todays-vision.onrender.com"]}));
 app.use(bodyParser.json());
 app.use(morgan('tiny'))
 
